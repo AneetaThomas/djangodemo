@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-3 p-3" style="margin-bottom: 100px;">
+    <h3 class="text-center bold fs-2">Our Products</h3>
+    <img src="{{cat.image.url}}" alt="" height="500px" width="50%">
+    <p class="fs-5" style="text-align: justify; line-height: 2;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sequi ab minus nisi 
+        dolorum aliquid id perspiciatis culpa inventore ipsam non Quidem ratione ipsa eos minima eveniet enim beatae nobis nostrum!
+    Vero corporis dolores natus harum illo minus repudiandae, est amet officia Ex volupt</p>
+    <!--  -->
+    <div class="row">
+        {% for i in pro %}
+        <div class="col-12 col-md-4 p-5 mt-3 height=100%">
+            <a href="#"><img src="{{i.image.url}}" class="img-fluid border"></a>
+            <h5 class="text-center mt-3 mb-3">{{i.name}}</h5>
+            <h5 class="text-center mt-3 mb-3 bi bi-currency-rupee">Rs.{{i.price}}</h5>
+            <p class="text-center"><a class="btn btn-success" href="{% url 'shop:details' i.id %}" >Details</a></p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

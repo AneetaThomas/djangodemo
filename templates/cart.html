@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+ cart page
+<div class="container mt-5 p-3" style="margin-bottom: 100px;">
+    <div class="row">
+        <h3 class="text-center text-light">Shopping Cart </h3>
+        <div class="col-7">
+            <table class="table table-bordered text-center">
+                <tr><th colspan="6">Cart Items</th></tr>
+                {% for i in cart %}
+                    <tr>
+                        <td class="p-3"><img src="{{i.product.image.url}}" height= '100px' width="100px" alt=""></td>
+                        <td class="p-3">product Name: {{i.product.name}}</td>
+                        <td class="p-3">Price:{{i.product.price}}  <br> quantity: {{i.quantity}}</td>
+                        <td class="p-3">Subtotal:{{i.subtotal}} </td>
+                        {% if i.product.stock > 0 %}
+                        <td width="50px"><a href="{% url 'cart:addtocart' i.product.id %}"><i class="fa fa-plus-circle text-blue fs-5" aria-hidden="true"></i></a>
+                            <a href="{% url 'cart:cartremove' i.product.id %}"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+                            <a href="{% url 'cart:cartdelete' i.product.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                        </td>
+                        {% else %}
+                        <a href="{% url 'cart:cartremove' i.product.id %}"><i class="fa fa-minus-circle" aria-hidden="true"></i></a>
+                        <a href="{% url 'cart:cartdelete' i.product.id %}"><i class='fa-solid fa-trash'></i></a>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            
+        
+            </table>
+        </div>
+        <div class="col-5">
+            <table class="table table-bordered">
+                <tr><th colspan="4">Checkout</th></tr>
+                <tr><td>Total:{{total}}</td></tr>
+            </table>    
+                <div class="d-flex justify-content-between">
+                    <a href="{% url 'cart:placeorder' %}" class="btn btn-secondary">Place order</a>
+                    <a href="" class="btn btn-secondary">Continue shopping</a>
+
+                </div>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

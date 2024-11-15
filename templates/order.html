@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container px-2 mb-5 mt-5 bg-success text-center">
+    <form action="" method="POST">
+        {% csrf_token %}
+            place order- address details
+            <div class="col ">
+              <label for="username" class="form-label">Address:</label>
+              <input type="text" class="form-control" placeholder="Address" name="adrs">
+            </div>
+            <div class="col">
+            <label for="inputPassword4" class="form-label text-center">Phone Number:</label>
+              <input type="password" class="form-control" placeholder="Phone Number" name="phno">
+            </div>
+            <div class="col">
+            <label for="inputPassword4" class="form-label text-center">pin:</label>
+            <input type="password" class="form-control" placeholder="pin" name="pin">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+    
+{% endblock %}

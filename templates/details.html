@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>product details page</h2>
+<div class="container mt-3 p-3" style="margin-bottom: 100px; margin-left: 500px; margin-right: 100px;">
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0" >
+            
+          <div class="col-md-4">
+            <img src="{{detl.image.url}}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Brand: {{detl.name}}</h5>
+              <p class="card-text">{{detl.desc}}</p>
+              <p class="card-text">Price: {{detl.price}}</p>
+              <p class="card-text">Total Stock:{{detl.stock}}</p>
+              
+
+ <!-- while login as a admin -->
+            
+              {% if user.is_superuser == True %}
+              {% if detl.stock > 0 %}
+              <h5>Product In Stock</h5>
+
+              <a href="{% url 'shop:addstock' i.id %}" class="btn btn-secondary fw-bold mt-3 mb-2 text-center">ADD Stock</a>
+
+              {% else %}
+
+              <h5>Product Out of Stock</h5>
+              <a href="{% url 'shop:addstock' i.id %}" class="btn btn-secondary fw-bold mt-3 mb-2 text-center">ADD Stock</a>
+
+              {% endif %}
+
+              {% else %}
+
+              {% if detl.stock > 0 %}
+              <div class="d-flex justify-content-between"></div>
+              <p class="text-center"><a class="btn btn-success" href="{% url 'cart:addtocart' detl.id %}" >Add to cart</a></p>
+
+              {% else %}
+              <h5>Out  of Stock</h5>
+
+              {% endif %}
+              {% endif %}
+
+            </div>
+          </div>
+        </div>
+        
+      </div>
+</div>
+{% endblock %}

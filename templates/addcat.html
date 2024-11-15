@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2>add category</h2>
+<div class="container px-2 mb-5 bg-success">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+    <div class="col">
+      <label for="username" class="form-label">Name:</label>
+      <input type="text" class="form-control" placeholder="User name" name="n">
+    </div>
+    <div class="col">
+        <label for="inputPassword4" class="form-label">image:</label>
+          <input type="file" class="form-control" placeholder="image" name="i">
+    </div>
+    <br>
+    <div class="col">
+        <label for="inputPassword4" class="form-label">description:</label>
+          <input type="text" class="form-control" placeholder="description" name="d">
+    </div>
+    <br>
+    <label for="">Submit</label>
+    <input type="submit">
+    </form>
+</div>
+{% endblock %}
+
